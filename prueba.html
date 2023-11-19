@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Galería de Imágenes</title>
+    <style>
+      body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.galeria {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.contenedor-imagenes {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin-right: 10px;
+}
+
+.oculto {
+    display: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+    </style>
+</head>
+<body>
+    <div class="galeria">
+        <div class="contenedor-imagenes">
+            <img src="imagen1.jpg" alt="Imagen 1">
+            <img src="imagen2.jpg" alt="Imagen 2">
+            <img src="imagen3.jpg" alt="Imagen 3">
+            <img src="imagen4.jpg" alt="Imagen 4" class="oculto">
+            <img src="imagen5.jpg" alt="Imagen 5" class="oculto">
+            <img src="imagen6.jpg" alt="Imagen 6" class="oculto">
+        </div>
+        <button id="mostrarMas">Mostrar más</button>
+    </div>
+
+    <script>document.addEventListener('DOMContentLoaded', function () {
+      const contenedorImagenes = document.querySelector('.contenedor-imagenes');
+      const imagenes = document.querySelectorAll('.contenedor-imagenes img');
+      const mostrarMasBoton = document.getElementById('mostrarMas');
+  
+      let currentIndex = 0;
+  
+      mostrarMasBoton.addEventListener('click', function () {
+          currentIndex += 3;
+  
+          if (currentIndex >= imagenes.length) {
+              currentIndex = 0;
+          }
+  
+          actualizarImagenes();
+      });
+  
+      function actualizarImagenes() {
+          imagenes.forEach((imagen, index) => {
+              if (index < currentIndex || index >= currentIndex + 3) {
+                  imagen.classList.add('oculto');
+              } else {
+                  imagen.classList.remove('oculto');
+              }
+          });
+      }
+  });
+  </script>
+
+</body>
+</html>
